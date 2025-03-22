@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import  { useMemo } from "react";
 import {  FaMoon, FaSearch, FaSun } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { setMode } from "../state";

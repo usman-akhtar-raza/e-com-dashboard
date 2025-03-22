@@ -1,16 +1,16 @@
 import { useMemo } from "react";
-import { setMode ,setSideBar} from "../state";
+import {  setSideBar} from "../state";
 
 import {
-  Cog6ToothIcon as SettingsIcon,
+  // Cog6ToothIcon as  SettingsIcon,
   ChevronLeftIcon,
-  ChevronRightIcon,
+  // ChevronRightIcon,
   HomeIcon,
   ShoppingCartIcon,
   UserGroupIcon,
   ReceiptPercentIcon,
   GlobeAltIcon,
-  CurrencyDollarIcon,
+  // CurrencyDollarIcon,
   CalendarIcon,
   CalendarDaysIcon,
   ShieldCheckIcon,
@@ -20,15 +20,12 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import ProfileImage from "./assests/profile.jpg";
+// import ProfileImage from "./assests/profile.jpg";
 import { FaBars } from "react-icons/fa";
 
-interface SidebarProps {
-  isSideBarOpen: boolean;
-  setIssideBarOpen: (isOpen: boolean) => void;
-}
 
-const Sidebar: React.FC<SidebarProps> = ({}) => {
+
+const Sidebar = () => {
   const isSideBarOpen = useSelector(
     (state: { global: { isSideBarOpen: Boolean } }) =>
       state.global.isSideBarOpen
