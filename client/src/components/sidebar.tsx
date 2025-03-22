@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import {  setSideBar} from "../state";
+import { setSideBar } from "../state";
 
 import {
   // Cog6ToothIcon as  SettingsIcon,
@@ -20,12 +20,11 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-// import ProfileImage from "./assests/profile.jpg";
+import ProfileImage from "../assets/profile.jpg";
 import { FaBars } from "react-icons/fa";
+import { IoSettingsOutline } from "react-icons/io5";
 
-
-
-const Sidebar = () => {
+const Sidebar = (user: { user: any }) => {
   const isSideBarOpen = useSelector(
     (state: { global: { isSideBarOpen: Boolean } }) =>
       state.global.isSideBarOpen
@@ -36,13 +35,12 @@ const Sidebar = () => {
   const { pathname } = useLocation();
   const [active, setActive] = useState("");
   const navigate = useNavigate();
- const dispatch = useDispatch();
- 
- 
+  const dispatch = useDispatch();
+
   const SidebarClasses = useMemo(
     () => ({
       main: `min-h-screen ${
-        mode === "dark" ? "dark bg-primary-600 text-white" : "bg-secondary-300 "
+        mode === "dark" ? "bg-primary-600 text-white" : "bg-secondary-300 "
       }`,
     }),
     [mode]
@@ -136,10 +134,10 @@ const Sidebar = () => {
       </div>
 
       {/* Divider */}
-      <div className="border-b border-gray-200" />
+      <div className="border-b my-1 border-gray-200" />
 
       {/* Menu Items */}
-      <div >
+      <div>
         {menuItems.map(({ label, icon, path }) => (
           <div
             key={label}
@@ -173,6 +171,28 @@ const Sidebar = () => {
             )} */}
           </div>
         ))}
+      </div>
+      {/* user profile */}
+      <div>
+        {isSideBarOpen && (
+          <div className=" flex justify-between px-2 py-3   border-t mt-10">
+            <img
+              src={ProfileImage}
+              alt="profile image"
+              height={40}
+              width={40}
+              className="rounded-3xl border "
+            />
+            <div className="text-sm font-extralight">
+              {" "}
+              <p>{user.user.name}</p>
+              <p>{user.user.occupation}</p>
+            </div>
+            <div className="flex items-center">
+              <IoSettingsOutline />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

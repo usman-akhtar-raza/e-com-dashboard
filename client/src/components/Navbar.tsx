@@ -1,11 +1,17 @@
-import  { useMemo } from "react";
-import {  FaMoon, FaSearch, FaSun } from "react-icons/fa";
+import { SetStateAction, useMemo, useState } from "react";
+import { FaMoon, FaSearch, FaSun } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { setMode } from "../state";
 import { IoSettingsOutline } from "react-icons/io5";
 import { MdArrowDropDown } from "react-icons/md";
 
-export default function Navbar() {
+export default function Navbar(user: { user: any }) {
+  const [anchorEl, setAnchorEL] = useState<HTMLButtonElement | null>(null);
+  const isOpen = Boolean(anchorEl);
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) =>
+    setAnchorEL(e.currentTarget);
+  const handleClose = (e: any) => setAnchorEL(null);
   const mode = useSelector(
     (state: { global: { mode: string } }) => state.global.mode
   );
@@ -25,6 +31,7 @@ export default function Navbar() {
     [mode]
   );
   let dispatch = useDispatch();
+  // console.log(anchorEl);
   return (
     <nav className={navClasses.main}>
       {/* <div className=" ml-20 text-2xl font-bold ">
@@ -60,10 +67,34 @@ export default function Navbar() {
                 className="border rounded-full"
               />
               <div className="font-thin ">
-                <p>name</p>
-                <p>subtitle</p>
+                <p>{user.user.name}</p>
+                <p>{user.user.occupation}</p>
               </div>
-              <MdArrowDropDown />
+              <button onClick={handleClick}>
+                <MdArrowDropDown />
+              </button>
+              {isOpen && (
+                <div
+                  className={`absolute right-24 top-16 dark ${
+                    mode === "dark" ? `bg-primary-300` : "bg-secondary-200"
+                  } px-10 py-2 rounded-md`}
+                >
+                  <menu>
+                    <ul>
+                      <li>
+                        <p>menu here</p>
+                      </li>{" "}
+                      <li>
+                        <p>Settings</p>
+                      </li>{" "}
+                      <li>
+                        <p>LOG OUT</p>
+                      </li>
+                    </ul>
+                    <button onClick={handleClose}>close</button>
+                  </menu>
+                </div>
+              )}
             </div>
           </div>
         </div>
