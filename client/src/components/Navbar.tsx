@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setMode } from "../state";
 import { IoSettingsOutline } from "react-icons/io5";
 import { MdArrowDropDown } from "react-icons/md";
-
+import ProfileImage from "../assets/profile.jpg"
 export default function Navbar(user: { user: any }) {
   const [anchorEl, setAnchorEL] = useState<HTMLButtonElement | null>(null);
   const isOpen = Boolean(anchorEl);
@@ -52,7 +52,7 @@ export default function Navbar(user: { user: any }) {
         <div className="flex w-75 gap-5 ">
           <button onClick={() => dispatch(setMode())}>
             {mode === "dark" ? <FaMoon /> : <FaSun />}
-            {/* <FaMoon/> */}
+            
           </button>
 
           <button>
@@ -61,7 +61,7 @@ export default function Navbar(user: { user: any }) {
           <div>
             <div className="flex items-center gap-2">
               <img
-                src="./profile.jpg"
+                src={ProfileImage}
                 alt="profile"
                 width={40}
                 className="border rounded-full"
