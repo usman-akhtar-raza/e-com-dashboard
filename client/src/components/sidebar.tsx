@@ -40,7 +40,7 @@ const Sidebar = (user: { user: any }) => {
   const SidebarClasses = useMemo(
     () => ({
       main: `min-h-screen ${
-        mode === "dark" ? "bg-primary-600 text-white" : "bg-secondary-300 "
+        mode === "dark" ? "bg-primary-600 text-white" : "bg-secondary-300 text-black"
       }`,
     }),
     [mode]
@@ -134,7 +134,7 @@ const Sidebar = (user: { user: any }) => {
       </div>
 
       {/* Divider */}
-      <div className="border-b my-1 border-gray-200" />
+      <div className="border-b my-1 " />
 
       {/* Menu Items */}
       <div>
@@ -146,7 +146,6 @@ const Sidebar = (user: { user: any }) => {
                 ? " dark:bg-secondary-300 bg-primary-600 text-black"
                 : ""
             }`}
-            // className={`  `}
             onClick={() => {
               navigate(`/${path}`);
               setActive(path);
@@ -159,19 +158,10 @@ const Sidebar = (user: { user: any }) => {
                 <p>{label}</p>
               </div>
             )}
-
-            {/* {isSideBarOpen && icon ? (
-              <div className="flex items-start gap-2 mx-auto ">
-                <p>{label}</p>
-              </div>
-            ) : (
-              <div className="  ">
-                <p className="ml-6">{label}</p>
-              </div>
-            )} */}
           </div>
         ))}
       </div>
+
       {/* user profile */}
       <div>
         {isSideBarOpen && (

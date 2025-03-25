@@ -1,4 +1,4 @@
-import { SetStateAction, useMemo, useState } from "react";
+import {  useMemo, useState } from "react";
 import { FaMoon, FaSearch, FaSun } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { setMode } from "../state";
@@ -22,7 +22,7 @@ export default function Navbar(user: { user: any }) {
 
   const navClasses = useMemo(
     () => ({
-      main: `max-h-screen ${
+      main: `max-h-screen max-w-screen ${
         mode === "dark"
           ? "dark bg-primary-600 text-white flex items-start justify-between px-6 py-4  shadow-xl"
           : "bg-secondary-300 text-gray-900 flex items-start justify-between px-6 py-4  shadow-xl"
@@ -34,11 +34,7 @@ export default function Navbar(user: { user: any }) {
   // console.log(anchorEl);
   return (
     <nav className={navClasses.main}>
-      {/* <div className=" ml-20 text-2xl font-bold ">
-        <button onClick={() => setIssideBarOpen(!isSideBarOpen)}>
-          <FaBars />
-        </button>
-      </div> */}
+     
       <div className={`flex-1 mx-10 ${isSideBarOpen === true ? "ml-34" : ""} `}>
         <div className="flex items-center justify-between  px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500">
           <div className="">
@@ -48,7 +44,7 @@ export default function Navbar(user: { user: any }) {
         </div>
       </div>
       <div>
-        {/* <button className="px-4 py-2 bg-primary-500 text-white rounded-md hover:bg-primary-600 transition-colors"> */}
+       
         <div className="flex w-75 gap-5 ">
           <button onClick={() => dispatch(setMode())}>
             {mode === "dark" ? <FaMoon /> : <FaSun />}
@@ -98,7 +94,7 @@ export default function Navbar(user: { user: any }) {
             </div>
           </div>
         </div>
-        {/* </button> */}
+
       </div>
     </nav>
   );

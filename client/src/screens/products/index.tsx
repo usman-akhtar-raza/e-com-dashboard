@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState } from "react";
 import { useGetProductsQuery } from "../../state/api";
 import Header from "../../components/Header";
 import { useSelector } from "react-redux";
@@ -28,15 +28,16 @@ const Product = ({
   stat,
 }: ProductProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
-    const isSideBarOpen = useSelector(
-      (state: { global: { isSideBarOpen: boolean } }) =>
-        state.global.isSideBarOpen
-    );
-    const mode = useSelector(
-        (state:{global:{mode:string}})=>state.global.mode
-    )
+
+  const mode = useSelector(
+    (state: { global: { mode: string } }) => state.global.mode
+  );
   return (
-    <div className={`${mode==="dark"?"dark bg-primary-300":"bg-secondary-600"}  shadow-md rounded-lg p-4 ${isSideBarOpen === true ?"ml-32":"ml-10"}`}>
+    <div
+      className={`${
+        mode === "dark" ? "dark bg-primary-300" : "bg-secondary-600"
+      }  shadow-md rounded-lg p-4 `}
+    >
       <div className="mb-4">
         <p className="text-sm text-gray-600">{category}</p>
         <h3 className="text-lg font-semibold">{name}</h3>
