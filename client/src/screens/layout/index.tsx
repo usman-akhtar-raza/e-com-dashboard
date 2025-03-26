@@ -22,7 +22,9 @@ function Layout() {
       <div>
         <Sidebar user={data || {}} />
         <Navbar user={data || {}} />
-        <div className={`ml-10 ${isSideBarOpen===true ?"ml-36":""}`}>
+        <div
+          className={`ml-10 transation-all duration-300 z-10 ${isSideBarOpen === true ? "opacity-5 bg-primary-600 " : ""}`}
+        >
           <Outlet />
         </div>
       </div>

@@ -9,6 +9,7 @@ import Layout from "./screens/layout";
 import Products from "./screens/products"
 import CustomerPage from "./screens/customerPage/index";
 import Transaction from "./screens/transaction";
+import Geography from "./screens/geography/index.tsx";
 function App() {
   const mode = useSelector(
     (state: { global: { mode: string } }) => state.global.mode
@@ -38,6 +39,7 @@ function App() {
             <Route path="/Products" element={<Products />} />
             <Route path="/customers" element={<CustomerPage />} />
             <Route path="/transactions" element={<Transaction />} />
+            <Route path="/geography" element={<Geography />} />
           </Route>
         </Routes>
         {/* </ThemeProvider> */}

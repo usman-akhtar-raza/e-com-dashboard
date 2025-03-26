@@ -1,4 +1,4 @@
-import  { useMemo } from "react";
+import { useMemo } from "react";
 import { useGetCustomersQuery } from "../../state/api";
 import Header from "../../components/Header";
 import { useSelector } from "react-redux";
@@ -24,7 +24,7 @@ export default function Customers() {
   );
 
   const { data, isLoading } = useGetCustomersQuery({});
-console.log(data);
+  console.log(data);
   const appClasses = useMemo(
     () =>
       `min-h-screen ${
@@ -38,9 +38,13 @@ console.log(data);
   }
 
   return (
-    <div className={`ml-10 ${appClasses} ${isSideBarOpen ? "ml-44" : ""} p-6 `}>
+    <div className={`ml-10 ${appClasses} p-6 `}>
       <Header title="Customers" subtitle="List of Customers" />
-      <div className={` mt-10 max-w-screen overflow-auto  p-4 rounded-md ${mode==="dark"?"bg-primary-300":"bg-secondary-700"}`}>
+      <div
+        className={` mt-10 max-w-screen overflow-auto  p-4 rounded-md ${
+          mode === "dark" ? "bg-primary-300" : "bg-secondary-700"
+        }`}
+      >
         <table className="w-full border-collapse text-left">
           <thead>
             <tr className=" text-gray-500">
@@ -73,8 +77,6 @@ console.log(data);
           </tbody>
         </table>
       </div>
-    </div>  
+    </div>
   );
 }
-
-

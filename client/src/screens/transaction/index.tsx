@@ -1,12 +1,3 @@
-
-
-
-
-
-
-
-
-
 import React, { useState } from "react";
 import { useGetTransactionQuery } from "../../state/api";
 import Header from "../../components/Header";
@@ -39,13 +30,13 @@ const Transactions: React.FC = () => {
     search,
   });
   console.log(data);
-  if(isLoading){
-    return <div className="ml-36">...loading</div>
+  if (isLoading) {
+    return <div className="ml-36">...loading</div>;
   }
 
   // Add null check for data
   if (!data?.transactions) {
-    return <div>No transactions found</div>
+    return <div>No transactions found</div>;
   }
 
   return (
@@ -85,7 +76,7 @@ const Transactions: React.FC = () => {
                 </td>
               </tr>
             ) : (
-              data?.transactions.map((transaction:Transaction) => (
+              data?.transactions.map((transaction: Transaction) => (
                 <tr key={transaction._id} className="hover:bg-gray-600">
                   <td className="p-2 border border-gray-600">
                     {transaction._id}
@@ -127,7 +118,6 @@ const Transactions: React.FC = () => {
 };
 
 export default Transactions;
-
 
 // import { useSelector } from "react-redux";
 // import { useGetTransactionQuery } from "../../state/api";
