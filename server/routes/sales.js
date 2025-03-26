@@ -1,9 +1,8 @@
 import express from "express";
-  
+import { getSales } from "../controllers/sales.js";
+
 const router = express.Router();
-  
-// router.get("/", (req, res) => {
-//     res.send("Hello from client routes!");
-// });
-  
+
+router.get("/sales", getSales);
+
 export default router;

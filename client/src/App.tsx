@@ -10,6 +10,13 @@ import Products from "./screens/products"
 import CustomerPage from "./screens/customerPage/index";
 import Transaction from "./screens/transaction";
 import Geography from "./screens/geography/index.tsx";
+import Overview from "./screens/overview/index.tsx";
+
+
+
+
+
+
 function App() {
   const mode = useSelector(
     (state: { global: { mode: string } }) => state.global.mode
@@ -20,7 +27,7 @@ function App() {
     () => ({
       main: `min-h-screen ${
         mode === "dark"
-          ? "dark bg-primary-600 text-white"
+          ? "dark bg-primary-700 text-white"
           : "bg-secondary-300 text-black"
       }`,
     }),
@@ -40,6 +47,7 @@ function App() {
             <Route path="/customers" element={<CustomerPage />} />
             <Route path="/transactions" element={<Transaction />} />
             <Route path="/geography" element={<Geography />} />
+            <Route path="/overview" element={<Overview />} />
           </Route>
         </Routes>
         {/* </ThemeProvider> */}

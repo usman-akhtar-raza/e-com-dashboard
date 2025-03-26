@@ -40,7 +40,7 @@ const Sidebar = (user: { user: any }) => {
   const SidebarClasses = useMemo(
     () => ({
       main: `min-h-screen ${
-        mode === "dark" ? "bg-primary-600 text-white" : "bg-secondary-300 text-black"
+        mode === "dark" ? "bg-primary-600 text-white" : "bg-secondary-700 text-black"
       }`,
     }),
     [mode]

@@ -24,7 +24,7 @@ export default function Navbar(user: { user: any }) {
     () => ({
       main: `max-h-screen max-w-screen ${
         mode === "dark"
-          ? "dark bg-primary-600 text-white flex items-start justify-between px-6 py-4  shadow-xl"
+          ? "dark bg-primary-700 text-white flex items-start justify-between px-6 py-4  shadow-xl"
           : "bg-secondary-300 text-gray-900 flex items-start justify-between px-6 py-4  shadow-xl"
       }`,
     }),
@@ -36,7 +36,7 @@ export default function Navbar(user: { user: any }) {
     <nav className={navClasses.main}>
      
       <div className={`flex-1 mx-10 ${isSideBarOpen === true ? "ml-34" : ""} `}>
-        <div className="flex items-center justify-between  px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500">
+        <div className={`${mode==="dark"? "bg-primary-500":"bg-secondary-700" } flex items-center justify-between  px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500`}>
           <div className="">
             <FaSearch />
           </div>

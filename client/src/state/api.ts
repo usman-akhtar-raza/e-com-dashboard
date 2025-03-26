@@ -5,7 +5,14 @@ export const api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env.VITE_APP_BASE_URL,
   }),
-  tagTypes: ["User", "Products", "Customers", "Transactions","Geography"],
+  tagTypes: [
+    "User",
+    "Products",
+    "Customers",
+    "Transactions",
+    "Geography",
+    "Sales",
+  ],
   endpoints: (build) => ({
     getUser: build.query({
       query: (id) => `general/user/${id}`,
@@ -27,9 +34,13 @@ export const api = createApi({
       }),
       providesTags: ["Transactions"],
     }),
-    getGeography:build.query({
-      query:()=>"client/geography",
-      providesTags:["Geography"]
+    getGeography: build.query({
+      query: () => "client/geography",
+      providesTags: ["Geography"],
+    }),
+    getSales: build.query({
+      query: () => "/sales/sales",
+      providesTags: ["Sales"],
     }),
   }),
 });
@@ -40,4 +51,5 @@ export const {
   useGetCustomersQuery,
   useGetTransactionQuery,
   useGetGeographyQuery,
+  useGetSalesQuery,
 } = api;

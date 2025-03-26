@@ -93,7 +93,7 @@ const Geography: React.FC<GeographyProps> = () => {
             ]}
           />
         ) : (
-          <div>hello</div>
+          <div className="text-center mt-10 text-3xl font-bold">...Loading</div>
         )}
       </div>
     </div>
