@@ -11,6 +11,7 @@ import CustomerPage from "./screens/customerPage/index";
 import Transaction from "./screens/transaction";
 import Geography from "./screens/geography/index.tsx";
 import Overview from "./screens/overview/index.tsx";
+import Daily from "./screens/daily/index.tsx";
 
 
 
@@ -48,6 +49,7 @@ function App() {
             <Route path="/transactions" element={<Transaction />} />
             <Route path="/geography" element={<Geography />} />
             <Route path="/overview" element={<Overview />} />
+            <Route path="/daily" element={<Daily />} />
           </Route>
         </Routes>
         {/* </ThemeProvider> */}

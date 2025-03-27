@@ -57,7 +57,7 @@ const OverviewChart: React.FC<OverviewChartProps> = ({
     return <p className="text-center text-gray-500">Loading...</p>;
 
   return (
-    <div className="mx-auto w-[75vh] h-[700px] bg-white p-4 rounded-lg shadow-md">
+    <div className="mx-24 h-[700px] text-black bg-white p-4 rounded-lg shadow-md">
       <ResponsiveLine
       data={[view === "sales" ? totalSalesLine : totalUnitsLine]}
         // data={view === "sales" ? [totalSalesLine] : [totalUnitsLine]}
