@@ -102,7 +102,7 @@ const Sidebar = (user: { user: any }) => {
     {
       label: "Admin",
       icon: <ShieldCheckIcon className="w-5 h-5" />,
-      path: "admin",
+      path: "admins",
     },
     {
       label: "Performance",

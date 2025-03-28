@@ -40,7 +40,7 @@ app.use(cors());
 // routes
 app.use("/client", clientRoutes);
 app.use("/general", generalRoutes);
-app.use("/managment", managmentRoutes);
+app.use("/management", managmentRoutes);
 app.use("/sales", salesRoutes);
 
 // mongoose setup

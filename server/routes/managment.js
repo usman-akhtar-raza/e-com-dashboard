@@ -1,9 +1,7 @@
 import express from "express";
-  
+import { getAdmins } from "../controllers/management.js";
 const router = express.Router();
-  
-// router.get("/", (req, res) => {
-//     res.send("Hello from client routes!");
-// });
-  
+
+router.get("/admins", getAdmins);
+
 export default router;

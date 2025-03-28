@@ -12,6 +12,10 @@ import Transaction from "./screens/transaction";
 import Geography from "./screens/geography/index.tsx";
 import Overview from "./screens/overview/index.tsx";
 import Daily from "./screens/daily/index.tsx";
+import Monthly from "./screens/monthly/index.tsx";
+import Breakdown from "./screens/breakdown/index.tsx";
+
+import Admin from "./screens/admins/index.tsx";
 
 
 
@@ -50,6 +54,9 @@ function App() {
             <Route path="/geography" element={<Geography />} />
             <Route path="/overview" element={<Overview />} />
             <Route path="/daily" element={<Daily />} />
+            <Route path="/monthly" element={<Monthly />} />
+            <Route path="/breakdown" element={<Breakdown />} />
+            <Route path="/admins" element={<Admin />} />
           </Route>
         </Routes>
         {/* </ThemeProvider> */}
