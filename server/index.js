@@ -7,7 +7,7 @@ import morgan from "morgan";
 import helmet from "helmet";
 import clientRoutes from "./routes/client.js";
 import generalRoutes from "./routes/general.js";
-import managmentRoutes from "./routes/managment.js";
+import managementRoutes from "./routes/managment.js";
 import salesRoutes from "./routes/sales.js";
 
 // data imports
@@ -18,6 +18,7 @@ import {
   dataProductStat,
   dataTransaction,
   dataOverallStat,
+  dataAffiliateStat,
 } from "./data/index.js";
 
 // model imports
@@ -25,6 +26,7 @@ import Product from "./models/Product.js";
 import ProductStat from "./models/ProductStat.js";
 import Transaction from "./models/Transaction.js";
 import OverallStat from "./models/OverallStat.js";
+import AffiliateStat from "./models/affiliateStat.js";
 
 dotenv.config();
 
@@ -40,7 +42,7 @@ app.use(cors());
 // routes
 app.use("/client", clientRoutes);
 app.use("/general", generalRoutes);
-app.use("/management", managmentRoutes);
+app.use("/management", managementRoutes);
 app.use("/sales", salesRoutes);
 
 // mongoose setup
@@ -56,5 +58,6 @@ mongoose
     // User.insertMany(dataUser);
     // Transaction.insertMany(dataTransaction);
     // OverallStat.insertMany(dataOverallStat);
+    // AffiliateStat.insertMany(dataAffiliateStat);
   })
   .catch((Error) => console.log(`${Error} did not connect`));

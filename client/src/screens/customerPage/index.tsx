@@ -14,10 +14,6 @@ type Customer = {
 };
 
 export default function Customers() {
-  const isSideBarOpen = useSelector(
-    (state: { global: { isSideBarOpen: boolean } }) =>
-      state.global.isSideBarOpen
-  );
 
   const mode = useSelector(
     (state: { global: { mode: string } }) => state.global.mode

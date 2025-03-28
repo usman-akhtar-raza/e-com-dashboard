@@ -16,6 +16,7 @@ import Monthly from "./screens/monthly/index.tsx";
 import Breakdown from "./screens/breakdown/index.tsx";
 
 import Admin from "./screens/admins/index.tsx";
+import Performance from "./screens/performance/index.tsx";
 
 
 
@@ -57,6 +58,7 @@ function App() {
             <Route path="/monthly" element={<Monthly />} />
             <Route path="/breakdown" element={<Breakdown />} />
             <Route path="/admins" element={<Admin />} />
+            <Route path="/performance" element={<Performance />} />
           </Route>
         </Routes>
         {/* </ThemeProvider> */}
