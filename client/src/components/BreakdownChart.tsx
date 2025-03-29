@@ -25,7 +25,7 @@ const BreakdownChart = ({ isDashboard = false }) => {
   );
   return (
     <div
-      className={` ml-10 ${!isDashboard === true ? "h-[700px]" : "h-[200px]"}`}
+      className={` ml-10 ${!isDashboard === true ? "h-[700px]" : "h-[400px]"}`}
     >
       <ResponsivePie
         data={formattedData}
@@ -64,7 +64,7 @@ const BreakdownChart = ({ isDashboard = false }) => {
         }}
         margin={
           isDashboard
-            ? { top: 40, right: 80, bottom: 100, left: 500 }
+            ? { top: 40, right: 80, bottom: 100, left: 50 }
             : { top: 40, right: 80, bottom: 80, left: 80 }
         }
         sortByValue={true}
@@ -116,15 +116,19 @@ const BreakdownChart = ({ isDashboard = false }) => {
       <div
         className="absolute  text-center pointer-events-none"
         style={{
-          top: "50%",
-          left: "55%",
+          top: "53%",
+          left: "53%",
           transform: isDashboard
             ? "translate(-75%, -170%)"
             : "translate(-50%, -100%)",
         }}
       >
         <h6 className="text-lg font-semibold">
-          {!isDashboard && "Total:"} ${data.yearlySalesTotal}
+          {!isDashboard && (
+            <span className="text-xl font-bold">
+              {`Total Sales: $${data.yearlySalesTotal}`}
+            </span>
+          )}
         </h6>
       </div>
     </div>

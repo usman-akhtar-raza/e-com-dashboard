@@ -1,5 +1,3 @@
-
-
 import React, { useMemo } from "react";
 import { ResponsiveLine } from "@nivo/line";
 import { useGetSalesQuery } from "../state/api";
@@ -15,14 +13,15 @@ const OverviewChart: React.FC<OverviewChartProps> = ({
   view,
 }) => {
   const { data, isLoading } = useGetSalesQuery({});
-const mode =useSelector(
-  (state:{global:{mode:string}})=>state.global.mode
-)
+  const mode = useSelector(
+    (state: { global: { mode: string } }) => state.global.mode
+  );
   const { totalSalesLine, totalUnitsLine } = useMemo(() => {
-    if (!data) return {
-      totalSalesLine: { id: "totalSales", color: "#1f78b4", data: [] },
-      totalUnitsLine: { id: "totalUnits", color: "#33a02c", data: [] }
-    };
+    if (!data)
+      return {
+        totalSalesLine: { id: "totalSales", color: "#1f78b4", data: [] },
+        totalUnitsLine: { id: "totalUnits", color: "#33a02c", data: [] },
+      };
 
     const { monthlyData } = data;
     const totalSalesLine = {
@@ -38,7 +37,7 @@ const mode =useSelector(
 
     monthlyData.reduce(
       (
-        acc: { sales: number; units: number; },
+        acc: { sales: number; units: number },
         {
           month,
           totalSales,
@@ -64,13 +63,12 @@ const mode =useSelector(
 
   return (
     <div
-      className={`mx-24 h-[700px] ${
-        mode === "dark" ? "bg-primary-300" : ""
+      className={`mx-24 ${isDashboard === true ? "h-[300px]" : "h-[700px]"}  ${
+        mode === "dark" ? "bg-primary-300" : "bg-secondary-700"
       }  p-4 rounded-lg shadow-md`}
     >
       <ResponsiveLine
         data={[view === "sales" ? totalSalesLine : totalUnitsLine]}
-        // data={view === "sales" ? [totalSalesLine] : [totalUnitsLine]}
         margin={{ top: 20, right: 50, bottom: 50, left: 70 }}
         xScale={{ type: "point" }}
         yScale={{
@@ -81,11 +79,11 @@ const mode =useSelector(
           reverse: false,
         }}
         yFormat=" >-.2f"
-        curve="catmullRom"
+        curve="linear"
         enableArea={isDashboard}
         axisBottom={{
           format: (v) => (isDashboard ? v.slice(0, 3) : v),
-          //   orient: "bottom",
+
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
@@ -94,7 +92,6 @@ const mode =useSelector(
           legendPosition: "middle",
         }}
         axisLeft={{
-          //   orient: "left",
           tickValues: 5,
           tickSize: 5,
           tickPadding: 5,
@@ -148,4 +145,3 @@ const mode =useSelector(
 };
 
 export default OverviewChart;
-

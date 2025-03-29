@@ -18,8 +18,14 @@ interface Transaction {
 
 const Transactions: React.FC = () => {
   const [page, setPage] = useState<number>(0);
-  const [pageSize, setPageSize] = useState<number>(20);
-  const [sort, setSort] = useState<Record<string, string>>({});
+  const [
+    pageSize,
+    //  setPageSize
+  ] = useState<number>(20);
+  const [
+    sort,
+    //  setSort
+  ] = useState<Record<string, string>>({});
   const [search, setSearch] = useState<string>("");
   const [searchInput, setSearchInput] = useState<string>("");
 
@@ -118,66 +124,3 @@ const Transactions: React.FC = () => {
 };
 
 export default Transactions;
-
-// import { useSelector } from "react-redux";
-// import { useGetTransactionQuery } from "../../state/api";
-// import { useState } from "react";
-// import Header from "../../components/Header";
-
-// export default function Transaction() {
-//   const isSideBarOpen = useSelector(
-//     (state: { global: { isSideBarOpen: boolean } }) =>
-//       state.global.isSideBarOpen
-//   );
-//   const { data, isLoading } = useGetTransactionQuery({
-//     page,
-//     pageSize,
-//     sort: JSON.stringify(sort),
-//     search,
-//   });
-//   const columns: GridColDef[] = [
-//     { field: "_id", headerName: "ID", flex: 1 },
-//     { field: "userId", headerName: "User ID", flex: 1 },
-//     { field: "createdAt", headerName: "Created At", flex: 1 },
-//     {
-//       field: "products",
-//       headerName: "# of Products",
-//       flex: 0.5,
-//       sortable: false,
-//       renderCell: (params) => params.value.length,
-//     },
-//     {
-//       field: "cost",
-//       headerName: "Cost",
-//       flex: 1,
-//       renderCell: (params) => `$${Number(params.value).toFixed(2)}`,
-//     },
-//   ];
-//   return (
-//     <div className={`ml-10 ${isSideBarOpen === true ? "ml-36" : ""}`}>
-//       <div className="m-6">
-//         <Header title="TRANSACTIONS" subtitle="Entire list of transactions" />
-//         <div className="h-[80vh] bg-gray-800 text-white p-4 rounded-lg shadow-lg">
-//           <DataGrid
-//             loading={isLoading || !data}
-//             getRowId={(row) => row._id}
-//             rows={data?.transactions || []}
-//             columns={columns}
-//             rowCount={data?.total || 0}
-//             pageSize={pageSize}
-//             paginationMode="server"
-//             sortingMode="server"
-//             onPageChange={(newPage) => setPage(newPage)}
-//             onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-//             onSortModelChange={(newSortModel) => setSort(newSortModel[0] || {})}
-//             components={{ Toolbar: DataGridCustomToolbar }}
-//             componentsProps={{
-//               toolbar: { searchInput, setSearchInput, setSearch },
-//             }}
-//             className="bg-gray-900 text-white border-none"
-//           />
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
