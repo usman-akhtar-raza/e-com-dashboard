@@ -60,7 +60,7 @@ export default function Dashboard() {
       <Header title={"Dashboard"} subtitle={"All stats"} />
       <div className="grid grid-cols-12">
         <div className="mt-5 col-span-12 md:col-span-1 lg:col-span-4 gap-4 md:text-center space-y-1">
-          <div className="grid col-span-12 md:col-span-12 gap-10">
+          <div className="grid col-span-12 md:col-span-4 lg:grid-cols-2  gap-10">
             <div
               className={`${
                 mode === "dark" ? "bg-primary-300 " : "bg-secondary-700"
@@ -140,8 +140,8 @@ export default function Dashboard() {
             </table>
           )}
         </div>
-        <div className="col-span-12 lg:col-span-4 md:col-span-12 shadow p-4 mx-28 rounded-lg border">
-          <h2 className="text-lg font-semibold">Sales By Category</h2>
+        <div className="col-span-12 lg:col-span-4 md:col-span-12 shadow p-4 md:mx-28 rounded-lg border">
+          <h2 className="hidden sm:text-lg font-semibold">Sales By Category</h2>
           <BreakdownChart isDashboard={true} />
           <p className="text-sm mt-2">
             Breakdown of real states and information via category for revenue

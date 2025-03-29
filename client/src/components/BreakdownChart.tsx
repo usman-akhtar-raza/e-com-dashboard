@@ -1,20 +1,32 @@
 import { ResponsivePie } from "@nivo/pie";
-
 import { useGetSalesQuery } from "../state/api";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
 const BreakdownChart = ({ isDashboard = false }) => {
   const { data, isLoading } = useGetSalesQuery({});
   const mode = useSelector(
     (state: { global: { mode: string } }) => state.global.mode
   );
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 500);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 500);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   if (!data || isLoading) return "....Loading";
+  
   const colors = [
     mode === "dark"
       ? ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#AF19FF"]
       : ["#0998FE", "#00i49F", "#FFBB28", "#FF8042", "#AF19FF"],
   ];
+  
   const formattedData = Object.entries(data.salesByCategory).map(
     ([category, sales], i) => ({
       id: category,
@@ -23,9 +35,12 @@ const BreakdownChart = ({ isDashboard = false }) => {
       color: colors[i],
     })
   );
+
   return (
     <div
-      className={` ml-10 ${!isDashboard === true ? "h-[700px]" : "h-[400px]"}`}
+      className={`w-full ${isMobile ? 'mx-2' : 'ml-10'} ${
+        !isDashboard === true ? "h-[700px]" : "h-[400px]"
+      }`}
     >
       <ResponsivePie
         data={formattedData}
@@ -33,56 +48,66 @@ const BreakdownChart = ({ isDashboard = false }) => {
           axis: {
             domain: {
               line: {
-                stroke: mode === "dark" ? "#a6a9be" : "#c2c2c2", // using primary-200 for dark and grey-200 for light
+                stroke: mode === "dark" ? "#a6a9be" : "#c2c2c2",
               },
             },
             legend: {
               text: {
-                fill: mode === "dark" ? "#a6a9be" : "#c2c2c2", // using primary-200 for dark and grey-200 for light
+                fill: mode === "dark" ? "#a6a9be" : "#c2c2c2",
               },
             },
             ticks: {
               line: {
-                stroke: mode === "dark" ? "#a6a9be" : "#c2c2c2", // using primary-200 for dark and grey-200 for light
+                stroke: mode === "dark" ? "#a6a9be" : "#c2c2c2",
                 strokeWidth: 1,
               },
               text: {
-                fill: mode === "dark" ? "#a6a9be" : "#c2c2c2", // using primary-200 for dark and grey-200 for light
+                fill: mode === "dark" ? "#a6a9be" : "#c2c2c2",
               },
             },
           },
           legends: {
             text: {
-              fill: mode === "dark" ? "#a6a9be" : "#c2c2c2", // using primary-200 for dark and grey-200 for light
+              fill: mode === "dark" ? "#a6a9be" : "#c2c2c2",
             },
           },
           tooltip: {
             container: {
-              color: mode === "dark" ? "#0088FE" : "#0998FE", // using primary main for dark and light
+              color: mode === "dark" ? "#0088FE" : "#0998FE",
             },
           },
         }}
         margin={
           isDashboard
-            ? { top: 40, right: 80, bottom: 100, left: 50 }
-            : { top: 40, right: 80, bottom: 80, left: 80 }
+            ? { 
+                top: 40, 
+                right: isMobile ? 20 : 80, 
+                bottom: isMobile ? 120 : 100, 
+                left: isMobile ? 20 : 50 
+              }
+            : { 
+                top: 40, 
+                right: isMobile ? 20 : 80, 
+                bottom: isMobile ? 100 : 80, 
+                left: isMobile ? 20 : 80 
+              }
         }
         sortByValue={true}
         innerRadius={0.45}
         padAngle={0.7}
         cornerRadius={3}
-        activeOuterRadiusOffset={8}
+        activeOuterRadiusOffset={isMobile ? 4 : 8}
         borderWidth={1}
         borderColor={{
           from: "color",
           modifiers: [["darker", 0.2]],
         }}
-        enableArcLinkLabels={!isDashboard}
+        enableArcLinkLabels={!isDashboard && !isMobile}
         arcLinkLabelsSkipAngle={10}
         arcLinkLabelsTextColor="#333333"
         arcLinkLabelsThickness={2}
         arcLinkLabelsColor={{ from: "color" }}
-        arcLabelsSkipAngle={10}
+        arcLabelsSkipAngle={isMobile ? 15 : 10}
         arcLabelsTextColor={{
           from: "color",
           modifiers: [["darker", 2]],
@@ -90,17 +115,17 @@ const BreakdownChart = ({ isDashboard = false }) => {
         legends={[
           {
             anchor: "bottom",
-            direction: "row",
+            direction: isMobile ? "column" : "row",
             justify: false,
-            translateX: isDashboard ? 20 : 0,
-            translateY: 56,
-            itemsSpacing: 0,
-            itemWidth: 85,
+            translateX: isDashboard ? (isMobile ? 0 : 20) : 0,
+            translateY: isMobile ? 0 : 56,
+            itemsSpacing: isMobile ? 5 : 0,
+            itemWidth: isMobile ? 60 : 85,
             itemHeight: 18,
             itemTextColor: "#999",
             itemDirection: "left-to-right",
             itemOpacity: 1,
-            symbolSize: 18,
+            symbolSize: isMobile ? 12 : 18,
             symbolShape: "circle",
             effects: [
               {
@@ -114,18 +139,20 @@ const BreakdownChart = ({ isDashboard = false }) => {
         ]}
       />
       <div
-        className="absolute  text-center pointer-events-none"
+        className="absolute text-center pointer-events-none"
         style={{
           top: "53%",
-          left: "53%",
+          left: isMobile ? "50%" : "53%",
           transform: isDashboard
             ? "translate(-75%, -170%)"
+            : isMobile
+            ? "translate(-50%, -50%)"
             : "translate(-50%, -100%)",
         }}
       >
         <h6 className="text-lg font-semibold">
           {!isDashboard && (
-            <span className="text-xl font-bold">
+            <span className={`${isMobile ? 'text-base' : 'text-xl'} font-bold`}>
               {`Total Sales: $${data.yearlySalesTotal}`}
             </span>
           )}
@@ -134,4 +161,5 @@ const BreakdownChart = ({ isDashboard = false }) => {
     </div>
   );
 };
+
 export default BreakdownChart;
