@@ -15,17 +15,14 @@ export default function Navbar(user: { user: any }) {
   const mode = useSelector(
     (state: { global: { mode: string } }) => state.global.mode
   );
-  const isSideBarOpen = useSelector(
-    (state: { global: { isSideBarOpen: boolean } }) =>
-      state.global.isSideBarOpen
-  );
+
 
   const navClasses = useMemo(
     () => ({
-      main: `max-h-screen max-w-screen ${
+      main: `max-h-screen grid grid-cols-1  ${
         mode === "dark"
-          ? "dark bg-primary-700 text-white flex items-start justify-between px-6 py-4  shadow-xl"
-          : "bg-secondary-300 text-gray-900 flex items-start justify-between px-6 py-4  shadow-xl"
+          ? "dark bg-primary-700 text-white md:flex md:items-start md:justify-between px-6 py-4  shadow-xl"
+          : "bg-secondary-300 text-gray-900 md:flex md:items-start md:justify-between px-6 py-4  shadow-xl"
       }`,
     }),
     [mode]
@@ -35,7 +32,7 @@ export default function Navbar(user: { user: any }) {
   return (
     <nav className={navClasses.main}>
      
-      <div className={`flex-1 mx-10 ${isSideBarOpen === true ? "ml-34" : ""} `}>
+      <div className={`flex-1 mx-10  `}>
         <div className={`${mode==="dark"? "bg-primary-500":"bg-secondary-700" } flex items-center justify-between  px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500`}>
           <div className="">
             <FaSearch />
