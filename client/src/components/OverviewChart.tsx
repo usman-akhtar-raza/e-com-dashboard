@@ -63,7 +63,7 @@ const OverviewChart: React.FC<OverviewChartProps> = ({
 
   return (
     <div
-      className={`mx-24 ${isDashboard === true ? "h-[300px]" : "h-[700px]"}  ${
+      className={`sm:mx-24 ${isDashboard === true ? "h-[300px]" : "h-[700px]"}  ${
         mode === "dark" ? "bg-primary-300" : "bg-secondary-700"
       }  p-4 rounded-lg shadow-md`}
     >
