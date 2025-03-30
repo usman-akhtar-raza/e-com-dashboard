@@ -2,10 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 interface GlobalState {
   mode: "light" | "dark";
-  isSideBArOpen: boolean;
+  isSideBarOpen: boolean;
+  userId: string;
 }
-const initailState = {
-  mode: "dark",
+const initailState: GlobalState = {
+  mode: "light",
   isSideBarOpen: false,
   userId: "63701cc1f03239b7f700000e",
 };

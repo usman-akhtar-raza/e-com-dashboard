@@ -11,7 +11,7 @@ export default function Navbar(user: { user: any }) {
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) =>
     setAnchorEL(e.currentTarget);
-  const handleClose = (e: any) => setAnchorEL(null);
+  const handleClose = () => setAnchorEL(null);
   const mode = useSelector(
     (state: { global: { mode: string } }) => state.global.mode
   );
