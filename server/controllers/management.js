@@ -1,7 +1,7 @@
 import User from "../models/user.js";
 import Transaction from "../models/Transaction.js";
 import mongoose from "mongoose";
-import AffiliateStat from "../models/affiliateStat.js";
+import AffiliateStat from "../models/AffiliateStat.js";
 
 export const getAdmins = async (req, res) => {
   try {
