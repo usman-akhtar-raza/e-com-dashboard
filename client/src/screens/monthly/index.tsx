@@ -8,6 +8,12 @@ import { useGetSalesQuery } from "../../state/api";
 import Header from "../../components/Header";
 import { useSelector } from "react-redux";
 
+interface MonthlyData {
+  month: string;
+  totalSales: number;
+  totalUnits: number;
+}
+
 const Monthly: React.FC = () => {
     const mode =useSelector(
         (state:{global:{mode:string}})=>state.global.mode
@@ -30,7 +36,7 @@ const Monthly: React.FC = () => {
       data: [] as { x: string; y: number }[],
     };
 
-    Object.values(monthlyData).forEach(({ month, totalSales, totalUnits }) => {
+    Object.values(monthlyData as MonthlyData[]).forEach(({ month, totalSales, totalUnits }) => {
      
         totalSalesLine.data.push({ x: month, y: totalSales });
         totalUnitsLine.data.push({ x: month, y: totalUnits });

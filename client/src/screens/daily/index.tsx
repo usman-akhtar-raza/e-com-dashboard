@@ -1,22 +1,3 @@
-// import React, { useMemo, useState } from "react";
-// import Header from "../../components/Header";
-// import OverviewChart from "../../components/OverviewChart";
-// import { useGetSalesQuery } from "../../state/api";
-// import DatePicker from "react-datepicker";
-
-// export default function Daily() {
-//   const [startDate, setStartDate] = useState(new Date("2025-02-01"));
-
-//   const [endDate, setEndtDate] = useState(new Date("2025-03-01"));
-//   const { data } = useGetSalesQuery({});
-
-//   const [formattedData] = useMemo(() => {
-//     if (!data) return [];
-//     const {dailyData} =data
-//   }, [data]); //eslint-disable-line react-hooks/exhaustive-deps
-//   return <div>Daily</div>;
-// }
-
 import React, { useMemo, useState } from "react";
 import { ResponsiveLine } from "@nivo/line";
 import DatePicker from "react-datepicker";
@@ -24,6 +5,12 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useGetSalesQuery } from "../../state/api";
 import Header from "../../components/Header";
 import { useSelector } from "react-redux";
+
+interface DailyData {
+  date: string;
+  totalSales: number;
+  totalUnits: number;
+}
 
 const Daily: React.FC = () => {
     const mode =useSelector(
@@ -48,7 +35,7 @@ const Daily: React.FC = () => {
       data: [] as { x: string; y: number }[],
     };
 
-    Object.values(dailyData).forEach(({ date, totalSales, totalUnits }) => {
+    Object.values(dailyData as Record<string, DailyData>).forEach(({ date, totalSales, totalUnits }) => {
       const dateFormatted = new Date(date);
       if (dateFormatted >= startDate && dateFormatted <= endDate) {
         const splitDate = date.substring(date.indexOf("-") + 1);
