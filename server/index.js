@@ -38,9 +38,11 @@ app.use(morgan("common"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
-  cors({
-    origin: "https://e-com-dashboard-eosin.vercel.app/",
-  })
+  cors(
+  //   {
+  //   origin: "https://e-com-dashboard-eosin.vercel.app/",
+  // }
+)
 );
 
 // routes
